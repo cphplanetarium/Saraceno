@@ -1,1 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Website</title>
+
+
+  <style>
+
+    /* =========================
+       GENERAL PAGE
+       ========================= */
+
+    body {
+      font-family: Arial, sans-serif;
+
+      background-color: #f3f3f3;
+
+      margin: 0;
+      padding: 30px 20px;
+
+      color: #222;
+
+      min-height: 100vh;
+    }
+
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+
+    h1 {
+      text-align: center;
+    }
+
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+
+    /* =========================
+       FRONT PAGE IMAGE BUTTONS
+       ========================= */
+
+    .post-buttons {
+      display: flex;
+      flex-direction: column;
+
+      gap: 20px;
+    }
+
+
+    .image-button {
+      width: 100%;
+
+      padding: 0;
+
+      border: none;
+      border-radius: 16px;
+
+      overflow: hidden;
+
+      background: none;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+
+    .image-button img {
+      width: 100%;
+
+      display: block;
+    }
+
+
+    .image-button:hover {
+      opacity: 0.9;
+    }
+
+
+
+    /* =========================
+       POST PAGE
+       ========================= */
+
+    #postPage {
+      display: none;
+    }
+
+
+    .post-information {
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 16px;
+
+      margin-top: 20px;
+
+      margin-bottom: 20px;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+
+    .post-information h2 {
+      margin-top: 0;
+    }
+
+
+    .post-image {
+      width: 100%;
+
+      display: block;
+
+      margin: 20px auto;
+
+      border-radius: 12px;
+    }
+
+
+
+    /* =========================
+       BACK BUTTON
+       ========================= */
+
+    .back-button {
+      width: 100%;
+
+      padding: 15px;
+
+      font-size: 16px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #222;
+      color: white;
+
+      cursor: pointer;
+    }
+
+
+    .back-button:hover {
+      background: #444;
+    }
+
+
+    .back-button.bottom {
+      margin-top: 20px;
+    }
+
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+  <!-- =========================================
+       FRONT PAGE
+       ========================================= -->
+
+  <div id="startPage">
+
+
+    <h1>Welcome</h1>
+
+
+    <p class="intro">
+      Choose below
+    </p>
+
+
+
+    <div class="post-buttons">
+
+
+      <!-- POST 1 BUTTON -->
+
+      <button
+        class="image-button"
+        onclick="openPost(1)"
+        aria-label="Open Post 1">
+
+        <img
+          src="images/button1.jpg"
+          alt="Post 1">
+
+      </button>
+
+
+
+      <!-- POST 2 BUTTON -->
+
+      <button
+        class="image-button"
+        onclick="openPost(2)"
+        aria-label="Open Post 2">
+
+        <img
+          src="images/button2.jpg"
+          alt="Post 2">
+
+      </button>
+
+
+
+      <!-- POST 3 BUTTON -->
+
+      <button
+        class="image-button"
+        onclick="openPost(3)"
+        aria-label="Open Post 3">
+
+        <img
+          src="images/button3.jpg"
+          alt="Post 3">
+
+      </button>
+
+
+
+      <!-- POST 4 BUTTON -->
+
+      <button
+        class="image-button"
+        onclick="openPost(4)"
+        aria-label="Open Post 4">
+
+        <img
+          src="images/button4.jpg"
+          alt="Post 4">
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- =========================================
+       POST PAGE
+       ========================================= -->
+
+  <div id="postPage">
+
+
+    <!-- BACK BUTTON AT TOP -->
+
+    <button
+      class="back-button"
+      onclick="goBack()">
+
+      ← Go back
+
+    </button>
+
+
+
+    <!-- POST CONTENT APPEARS HERE -->
+
+    <div
+      id="postInformation"
+      class="post-information">
+    </div>
+
+
+
+    <!-- BACK BUTTON AT BOTTOM -->
+
+    <button
+      class="back-button bottom"
+      onclick="goBack()">
+
+      ← Go back
+
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+  /* =========================================
+     CONTENT FOR EACH POST
+     ========================================= */
+
+
+  const posts = {
+
+
+    /* POST 1 */
+
+    1: `
+
+      <h2>Post 1</h2>
+
+      <p>
+        This is the information for Post 1.
+      </p>
+
+      <img
+        class="post-image"
+        src="images/post1.jpg"
+        alt="Image for Post 1"
+      >
+
+      <p>
+        More information can go here.
+      </p>
+
+    `,
+
+
+
+    /* POST 2 */
+
+    2: `
+
+      <h2>Post 2</h2>
+
+      <p>
+        This is the information for Post 2.
+      </p>
+
+      <img
+        class="post-image"
+        src="images/post2.jpg"
+        alt="Image for Post 2"
+      >
+
+      <p>
+        More information can go here.
+      </p>
+
+    `,
+
+
+
+    /* POST 3 */
+
+    3: `
+
+      <h2>Post 3</h2>
+
+      <p>
+        This is the information for Post 3.
+      </p>
+
+      <img
+        class="post-image"
+        src="images/post3.jpg"
+        alt="Image for Post 3"
+      >
+
+      <p>
+        More information can go here.
+      </p>
+
+    `,
+
+
+
+    /* POST 4 */
+
+    4: `
+
+      <h2>Post 4</h2>
+
+      <p>
+        This is the information for Post 4.
+      </p>
+
+      <img
+        class="post-image"
+        src="images/post4.jpg"
+        alt="Image for Post 4"
+      >
+
+      <p>
+        More information can go here.
+      </p>
+
+    `
+
+
+  };
+
+
+
+
+
+  /* =========================================
+     OPEN A POST
+     ========================================= */
+
+  function openPost(postNumber) {
+
+    document.getElementById("startPage").style.display = "none";
+
+    document.getElementById("postPage").style.display = "block";
+
+
+    document.getElementById("postInformation").innerHTML =
+      posts[postNumber];
+
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+
+
+
+  /* =========================================
+     RETURN TO FRONT PAGE
+     ========================================= */
+
+  function goBack() {
+
+    document.getElementById("postPage").style.display = "none";
+
+    document.getElementById("startPage").style.display = "block";
+
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+</script>
+
+
+</body>
+
+</html>
