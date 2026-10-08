@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Udforsk Kosmiske Tråde</title>
+
+  <style>
+
+    /* =========================
+       GENERAL PAGE
+       ========================= */
+
+    @font-face {
+      font-family: "Sono";
+      src: url("Sono-Regular.otf") format("opentype");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: "Sono", sans-serif;
+      background-image: url("lilla_crab_nebula.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 30px 20px;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================
+       LANGUAGE SWITCH
+       ========================= */
+
+    .language-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .language-button {
+      padding: 10px 18px;
+      border: 1px solid white;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.55);
+      color: white;
+      font-family: "Sono", sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .language-button.active {
+      background: white;
+      color: black;
+    }
+
+    .language-button:hover {
+      opacity: 0.85;
+    }
+
+
+    /* =========================
+       FRONT PAGE IMAGE BUTTONS
+       ========================= */
+
+    .post-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .image-button {
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      background: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .image-button img {
+      width: 100%;
+      display: block;
+    }
+
+    .image-button:hover {
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       POST PAGE
+       ========================= */
+
+    #postPage {
+      display: none;
+    }
+
+    .post-information {
+      background: white;
+      color: black;
+      padding: 25px;
+      border-radius: 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .post-information h2 {
+      margin-top: 0;
+    }
+
+    .post-image {
+      width: 100%;
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+    }
+
+    .extra-info {
+      margin-top: 20px;
+      padding: 20px;
+      background: #eeeeee;
+      color: #222;
+      border-radius: 12px;
+    }
+
+    .extra-info h3 {
+      margin-top: 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .extra-info p {
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       BACK BUTTON
+       ========================= */
+
+    .back-button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      font-family: "Sono", sans-serif;
+      border: none;
+      border-radius: 10px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background: #444;
+    }
+
+    .back-button.bottom {
+      margin-top: 20px;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <!-- =========================================
+       FRONT PAGE
+       ========================================= -->
+
+  <div id="startPage">
+
+    <div class="language-switch">
+      <button
+        id="danishButton"
+        class="language-button active"
+        onclick="setLanguage('da')">
+        Dansk
+      </button>
+
+      <button
+        id="englishButton"
+        class="language-button"
+        onclick="setLanguage('en')">
+        English
+      </button>
+    </div>
+
+    <h1 id="frontTitle">Udforsk KOSMISKE TRÅDE.</h1>
+
+    <p id="frontIntro1" class="intro">
+      Gå på opdagelse i KOSMISKE TRÅDE og led efter de 7 særligt udvalgte værker.
+      Når du har fundet et værk, klik da på det nedenfor for at lære mere om det.
+    </p>
+
+    <p id="frontIntro2" class="intro">
+      Tip: Brug diameteren som en ledetråd til at finde det rigtige værk,
+      eller få et ekstra hint ved at trykke på værket du leder efter.
+    </p>
+
+
+    <div class="post-buttons">
+
+      <!-- POST 1 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="1"
+        onclick="openPost(1)"
+        aria-label="Åbn værk 1">
+
+        <img
+          src="Værk1f.png"
+          alt="Værk 1">
+
+      </button>
+
+
+      <!-- POST 2 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="2"
+        onclick="openPost(2)"
+        aria-label="Åbn værk 2">
+
+        <img
+          src="Værk2f.png"
+          alt="Værk 2">
+
+      </button>
+
+
+      <!-- POST 3 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="3"
+        onclick="openPost(3)"
+        aria-label="Åbn værk 3">
+
+        <img
+          src="Værk3f.png"
+          alt="Værk 3">
+
+      </button>
+
+
+      <!-- POST 4 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="4"
+        onclick="openPost(4)"
+        aria-label="Åbn værk 4">
+
+        <img
+          src="Værk4f.png"
+          alt="Værk 4">
+
+      </button>
+
+
+      <!-- POST 5 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="5"
+        onclick="openPost(5)"
+        aria-label="Åbn værk 5">
+
+        <img
+          src="Værk5f.png"
+          alt="Værk 5">
+
+      </button>
+
+
+      <!-- POST 6 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="6"
+        onclick="openPost(6)"
+        aria-label="Åbn værk 6">
+
+        <img
+          src="Værk6f.png"
+          alt="Værk 6">
+
+      </button>
+
+
+      <!-- POST 7 BUTTON -->
+      <button
+        class="image-button post-link"
+        data-post="7"
+        onclick="openPost(7)"
+        aria-label="Åbn værk 7">
+
+        <img
+          src="Værk7f.png"
+          alt="Værk 7">
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================
+       POST PAGE
+       ========================================= -->
+
+  <div id="postPage">
+
+    <!-- BACK BUTTON AT TOP -->
+    <button
+      id="backButtonTop"
+      class="back-button"
+      onclick="goBack()">
+
+      ← Tilbage
+
+    </button>
+
+
+    <!-- POST CONTENT APPEARS HERE -->
+    <div
+      id="postInformation"
+      class="post-information">
+    </div>
+
+
+    <!-- BACK BUTTON AT BOTTOM -->
+    <button
+      id="backButtonBottom"
+      class="back-button bottom"
+      onclick="goBack()">
+
+      ← Tilbage
+
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+  /* =========================================
+     LANGUAGE
+     ========================================= */
+
+  let currentLanguage = "da";
+
+  const frontPageText = {
+
+    da: {
+      title: "Udforsk KOSMISKE TRÅDE.",
+      intro1: "Gå på opdagelse i KOSMISKE TRÅDE og led efter de 7 særligt udvalgte værker. Når du har fundet et værk, klik da på det nedenfor for at lære mere om det.",
+      intro2: "Tip: Brug diameteren som en ledetråd til at finde det rigtige værk, eller få et ekstra hint ved at trykke på værket du leder efter.",
+      back: "← Tilbage",
+      openWork: "Åbn værk"
+    },
+
+    en: {
+      title: "Explore COSMIC THREADS.",
+      intro1: "Explore COSMIC THREADS and look for the 7 specially selected works. Once you have found a work, click it below to learn more about it.",
+      intro2: "Tip: Use the diameter as a clue to find the correct work, or get an extra hint by clicking the work you are looking for.",
+      back: "← Go back",
+      openWork: "Open work"
+    }
+
+  };
+
+
+  function setLanguage(language) {
+
+    currentLanguage = language;
+
+    document.documentElement.lang = language;
+
+    document.getElementById("frontTitle").textContent =
+      frontPageText[language].title;
+
+    document.getElementById("frontIntro1").textContent =
+      frontPageText[language].intro1;
+
+    document.getElementById("frontIntro2").textContent =
+      frontPageText[language].intro2;
+
+    document.getElementById("backButtonTop").textContent =
+      frontPageText[language].back;
+
+    document.getElementById("backButtonBottom").textContent =
+      frontPageText[language].back;
+
+
+    document.getElementById("danishButton").classList.toggle(
+      "active",
+      language === "da"
+    );
+
+    document.getElementById("englishButton").classList.toggle(
+      "active",
+      language === "en"
+    );
+
+
+    document.querySelectorAll(".post-link").forEach(function(button) {
+
+      const postNumber = button.dataset.post;
+
+      button.setAttribute(
+        "aria-label",
+        frontPageText[language].openWork + " " + postNumber
+      );
+
+    });
+
+  }
+
+
+
+  /* =========================================
+     CONTENT FOR EACH POST
+     ========================================= */
+
+  const posts = {
+
+
+    /* =========================================
+       POST 1
+       ========================================= */
+
+    1: {
+
+      da: `
+
+        <h2>VFTS 682</h2>
+
+        <p>
+          VFTS 682 er en meget klar stjerne, som er 3.2 millioner gange mere lysstærk end solen.
+          Men alligevel ser den ikke sådan ud her fra Jorden af. Stjernen ser faktisk meget mere
+          lyssvag ud end dem, den ligger sammen med, selvom vi kan se, at den burde lyse mere.
+          Meget af lyset må være blevet blokeret af stjernestøv som ligger mellem os og VFTS 682.
+          Det er et fænomen man kalder dust extinction.
+        </p>
+
+        <p>
+          Overvej, hvordan denne sfære skiller sig ud fra de andre, og hvorfor.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk1.jpg"
+          alt="Værk 1"
+        >
+
+        <p>
+          <em>Hint til placering: Hænger langs den trappe, der starter tæt på butikken.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om dust extinction</h3>
+
+          <p>
+            Støv og gas kan fungere som et filter, der fjerner nogle dele af lyset fra en stjerne.
+            Det er det, vi kalder dust extinction. Man ser især at det er de kortere bølgelængder,
+            såsom blåt lys, der påvirkes mest, og altså frasorteres. Effekten af dét er, at objekter
+            kan se mindre blå ud, end de ellers ville. Hvis en hvid stjerne f.eks. gemmer sig i en
+            stor støvsky, ville den se rød ud når vi kigger på den, fordi alt det blå lys er blevet
+            sorteret fra. Denne form for extinction kaldes Dust Reddening, og det er det VFTS 682
+            har været udsat for. Det er faktisk det samme, der sker her på Jorden, når vi ser en
+            solnedgang. Fordi solens lys skal gennem et tykkere lag atmosfære for at nå hen til dig,
+            der står og kigger på den som den går ned, bliver mere af det blå lys frasorteret, og vi
+            ender med at se solen som mere rød.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="dust_reddening.png"
+          alt="Dust reddening"
+        >
+
+        <p>
+          <em>Dust reddening eksempel</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>VFTS 682</h2>
+
+        <p>
+          VFTS 682 is an extremely luminous star, about 3.2 million times more luminous than the Sun.
+          Even so, it does not look that bright from Earth. In fact, the star appears much fainter
+          than the stars around it, even though we know that it should shine more brightly.
+          Much of its light must have been blocked by interstellar dust located between us and VFTS 682.
+          This phenomenon is called dust extinction.
+        </p>
+
+        <p>
+          Consider how this sphere differs from the others, and why.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk1.jpg"
+          alt="Work 1"
+        >
+
+        <p>
+          <em>Location hint: It hangs along the staircase that begins near the shop.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about dust extinction</h3>
+
+          <p>
+            Dust and gas can act like a filter that removes some parts of a star's light.
+            This is what we call dust extinction. The shorter wavelengths, such as blue light,
+            are affected the most and are filtered out more strongly. As a result, objects can
+            appear less blue than they otherwise would. If a white star is hidden inside a large
+            cloud of dust, for example, it can look red when we observe it because much of the blue
+            light has been filtered away. This type of extinction is called dust reddening, and it
+            is what has affected VFTS 682. A similar effect happens here on Earth when we see a sunset.
+            When the Sun is low in the sky, its light has to travel through a thicker layer of the
+            atmosphere before reaching us. More blue light is filtered out, so the Sun appears redder.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="dust_reddening.png"
+          alt="Dust reddening"
+        >
+
+        <p>
+          <em>Example of dust reddening</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 2
+       ========================================= */
+
+    2: {
+
+      da: `
+
+        <h2>R136A1</h2>
+
+        <p>
+          R136A1 er den tungeste stjerne, man nogensinde har observeret. Den vejer 291 gange mere end solen,
+          og er 7.200.000 gange mere lysstærk. R136A1 er en Wolf Rayet stjerne, og det betyder, at den laver
+          så meget energi, at den faktisk river sig selv itu. Man mener, at denne slags stjerner måske har
+          været med til at sprede tunge grundstoffer rundt i universet.
+        </p>
+
+        <p>
+          Overvej, hvornår Saraceno vælger at bruge sfærer i sine værker.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk2.jpg"
+          alt="Værk 2"
+        >
+
+        <p>
+          <em>Hint til lokation: Dette værk findes tæt på butikken.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om Wolf Rayet stjerner</h3>
+
+          <p>
+            Wolf Rayet stjerner er nogle af de mest luminøse stjerner, der findes. De skaber så meget energi,
+            at stjernerne skubber sine egne lag af i ekstreme stjernevinde, som selv ikke deres tyngdekraft kan
+            holde fast i. Forskere er blandt andet nysgerrige på, om denne slags stjerner har været en del af at
+            sprede grundstoffer i det tidlige univers. Der er nemlig det 'problem', at det ser ud til at der var
+            dannet og spredt mange tunge grundstoffer ret tidligt i universets historie, og man er ikke helt sikker
+            på, hvor det alt sammen er kommet fra. Måske fra stærke Wolf Rayet vinde?
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="wolf_rayet.png"
+          alt="Wolf Rayet stjerne"
+        >
+
+        <p>
+          <em>En Wolf Rayet stjerne hvor stjernevindene tydeligt ses</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>R136A1</h2>
+
+        <p>
+          R136A1 is the most massive star ever observed. It has about 291 times the mass of the Sun
+          and is around 7,200,000 times more luminous. R136A1 is a Wolf-Rayet star, which means that
+          it produces so much energy that it is effectively tearing itself apart. Scientists think
+          that stars like this may have helped spread heavy elements throughout the universe.
+        </p>
+
+        <p>
+          Consider when Saraceno chooses to use spheres in his works.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk2.jpg"
+          alt="Work 2"
+        >
+
+        <p>
+          <em>Location hint: This work can be found close to the shop.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about Wolf-Rayet stars</h3>
+
+          <p>
+            Wolf-Rayet stars are among the most luminous stars that exist. They produce so much energy
+            that they push their own outer layers away in extreme stellar winds, which even their gravity
+            cannot hold on to. Researchers are interested in whether stars like these may have helped spread
+            elements through the early universe. One of the puzzles is that many heavy elements appear to
+            have formed and spread quite early in the history of the universe, and scientists are not entirely
+            sure where all of them came from. Perhaps powerful Wolf-Rayet winds played a role.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="wolf_rayet.png"
+          alt="Wolf-Rayet star"
+        >
+
+        <p>
+          <em>A Wolf-Rayet star with clearly visible stellar winds</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 3
+       ========================================= */
+
+    3: {
+
+      da: `
+
+        <h2>NGC 2070</h2>
+
+        <p>
+          NGC 2070 er en stjernehobe, som ligger i et område der hedder Taranteltågen. En stjernehob er et
+          område hvor der er særligt mange stjerner, fordi der har været nylig stjernefødsel. Det betyder også,
+          at der er mange af de tungeste og varmeste stjerner, der findes. Det er fordi tunge stjerner ikke lever
+          lige så lang tid som lette stjerner, og derfor skal man finde områder med nye stjerner for at se dem.
+        </p>
+
+        <p>
+          Overvej, hvad Saraceno har tænkt da han lavede dette objekt. Er der en sammenhæng mellem objektet og størrelsen?
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk3.jpg"
+          alt="Værk 3"
+        >
+
+        <p>
+          <em>Hint til lokation: Stå ved den trappe der starter ved butikken, og kig op.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om stjerner og deres levetid</h3>
+
+          <p>
+            Stjerner skabes i forskellige størrelser og farver. Jo større en stjerne er, jo mere tyngdekraft har den.
+            Derfor skal stjernen også skabe mere energi (ved hjælp af fusion i dens kerne) for at kæmpe imod tyngdekraften.
+            Resultatet af dette er, at større stjerner skaber mere energi end små stjerner. Store stjerner udsender derfor
+            meget blåt lys, da blåt lys har meget energi. Omvendt udsender små stjerner mere rødt lys, som har lavere energi.
+            Hvis man vil se stjernefarver med det blotte øje, så hold øje med stjernebilledet Orion, som tydeligt har en rød
+            skulder og en blå fod.
+          </p>
+
+          <p>
+            Størrelsen (og derfor farven) på stjerner hænger også sammen med deres levetid. Fordi de store stjerner skal
+            producere <em>så</em> meget energi, opbruger de også deres hydrogenlager (deres brændstof) hurtigere end små
+            stjerner, og derfor vil de også dø ud tidligere. Effekten er ret stor: De helt små stjerner kan leve i
+            trillioner af år, hvorimod de største "kun" lever i millioner af år.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="NGC-2070-Tarantula-Neb.jpg"
+          alt="NGC 2070"
+        >
+
+        <p>
+          <em>NGC 2070 stjernehoben</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>NGC 2070</h2>
+
+        <p>
+          NGC 2070 is a star cluster located in a region known as the Tarantula Nebula. A star cluster is an area
+          containing a particularly large number of stars because recent star formation has taken place there.
+          This also means that it contains many of the most massive and hottest stars that exist. Massive stars do
+          not live as long as lower-mass stars, so regions with newly formed stars are the best places to find them.
+        </p>
+
+        <p>
+          Consider what Saraceno may have been thinking when he created this object. Is there a connection between
+          the object and its size?
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk3.jpg"
+          alt="Work 3"
+        >
+
+        <p>
+          <em>Location hint: Stand by the staircase that begins near the shop and look up.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about stars and their lifetimes</h3>
+
+          <p>
+            Stars form in different sizes and colours. The more massive a star is, the stronger its gravity is.
+            The star therefore has to produce more energy through fusion in its core in order to resist gravity.
+            As a result, massive stars produce more energy than small stars. Massive stars emit a great deal of
+            blue light because blue light carries more energy. Smaller stars, by contrast, emit more red light,
+            which has lower energy. If you want to see star colours with the naked eye, look for the constellation
+            Orion, which clearly has a red shoulder and a blue foot.
+          </p>
+
+          <p>
+            A star's size, and therefore its colour, is also connected to its lifetime. Because massive stars have
+            to produce <em>so</em> much energy, they use up their hydrogen supply — their fuel — much faster than
+            smaller stars and therefore die sooner. The difference is enormous: the smallest stars can live for
+            trillions of years, while the largest stars live for "only" millions of years.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="NGC-2070-Tarantula-Neb.jpg"
+          alt="NGC 2070"
+        >
+
+        <p>
+          <em>The NGC 2070 star cluster</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 4
+       ========================================= */
+
+    4: {
+
+      da: `
+
+        <h2>ZONAL HARMONIC</h2>
+
+        <p>
+          Dette værk skildrer Spiderweb galaksen, som ligger 10.6 milliarder lysår væk. Galaksen har fået sit navn,
+          fordi dens form skiller sig lidt ud. Den er nemlig hverken spiralformet som Mælkevejen, eller mere sfærisk
+          som andre galakser. Galaksen ser sådan ud, fordi den er ved at vokse sig større ved at smelte sammen med andre
+          mindre galakser, som er i kredsløb om den centrale galakse. Fordi galaksen ligger 10.6 milliarder lysår væk,
+          ser vi den faktisk som den så ud for 10.6 milliarder år siden. Så hvis vi kunne teleportere hen til den i dag,
+          ville den nok se helt anderledes ud.
+        </p>
+
+        <p>
+          Overvej hvordan Saraceno har valgt at skildre den proces, som galaksen er midt i, og sammenlign med billedet nedenfor.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk4.jpg"
+          alt="Værk 4"
+        >
+
+        <p>
+          <em>Hint til lokation: Kan findes hvor trappen skifter retning.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om galakser og deres opbygning</h3>
+
+          <p>
+            Galakser kan se ret forskellige ud. Det, man nok tænker på, når man tænker på en galakse, er de spiralformede
+            galakser. De er flade, og så er de kendetegnet ved deres spiralarme. Mælkevejen, som vi bor i, er sådan en galakse.
+            Derudover er det mest normalt at finde de elliptiske galakser, som er mere runde. Nogle gange kuglerunde, men oftest
+            lidt mere fladmaste, som en amerikansk fodbold. De største galakser, vi kender til, er alle elliptiske.
+          </p>
+
+          <p>
+            Fælles for galakserne er, at de i deres centrum har et supermassivt sort hul. Tyngdekraften fra det sorte hul er
+            blandt andet det, der holder galaksen samlet. En anden komponent, der holder den sammen, er nemlig <em>mørkt stof</em>,
+            som er et eller andet stof, der har en tyngdekraft, men som ikke interagerer med lys. Vi ved meget lidt om det,
+            udover at det eksisterer.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="spiderweb_galaxy.jpg"
+          alt="Spiderweb galaksen"
+        >
+
+        <p>
+          <em>Spiderweb galaksen</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>ZONAL HARMONIC</h2>
+
+        <p>
+          This work depicts the Spiderweb Galaxy, which is located 10.6 billion light-years away. The galaxy got its
+          name because its shape is unusual. It is neither spiral-shaped like the Milky Way nor more spherical like
+          some other galaxies. It looks this way because it is growing by merging with smaller galaxies that orbit
+          the central galaxy. Because the Spiderweb Galaxy is 10.6 billion light-years away, we are actually seeing
+          it as it looked 10.6 billion years ago. If we could teleport there today, it would probably look very different.
+        </p>
+
+        <p>
+          Consider how Saraceno has chosen to depict the process the galaxy is undergoing, and compare it with the image below.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk4.jpg"
+          alt="Work 4"
+        >
+
+        <p>
+          <em>Location hint: It can be found where the staircase changes direction.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about galaxies and their structure</h3>
+
+          <p>
+            Galaxies can look very different from one another. When people think of a galaxy, they often picture a spiral galaxy.
+            These galaxies are flat and are characterised by their spiral arms. The Milky Way, which we live in, is this kind of
+            galaxy. Another common type is the elliptical galaxy, which is rounder. Some are almost spherical, while others are
+            somewhat flattened, more like an American football. The largest galaxies we know are all elliptical.
+          </p>
+
+          <p>
+            Galaxies generally have a supermassive black hole at their centre. The gravity associated with the central region is
+            part of what holds a galaxy together. Another component that helps hold galaxies together is <em>dark matter</em>,
+            a form of matter that has gravity but does not interact with light. We know very little about what dark matter is,
+            beyond the evidence that it exists.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="spiderweb_galaxy.jpg"
+          alt="Spiderweb Galaxy"
+        >
+
+        <p>
+          <em>The Spiderweb Galaxy</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 5
+       ========================================= */
+
+    5: {
+
+      da: `
+
+        <h2>PSR J1446-4701</h2>
+
+        <p>
+          PSR J1446-4701 er en pulsar. Pulsarer er en særlig slags stjerne, som ser ud til at blinke, fordi den har
+          kraftige lysstråler der skinner ud fra dens magnetiske poler, mens den roterer meget hurtigt. Denne pulsar
+          er en såkaldt Sort Enke Pulsar, fordi den har en partnerstjerne, som den ødelægger ved udsendelse af disse
+          stærke lyspulser. Ligesom edderkoppearten ’Den Sorte Enke’, som har det med at spise sin partner efter parring.
+        </p>
+
+        <p>
+          Overvej hvorfor trådene i dette objekt har den form, de har.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk5.jpg"
+          alt="Værk 5"
+        >
+
+        <p>
+          <em>Hint til lokation: Dette er et af de værker, der hænger allerhøjest oppe.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om pulsarer</h3>
+
+          <p>
+            Pulsarer kan skabes i supernovaeksplosioner, hvor de helt store stjerner ender deres liv. I sådanne eksplosioner
+            presses stjernens kerne enormt meget sammen, og danner enten neutronstjerner eller sorte huller. Når noget bliver
+            mindre, er der også stor chance for at det begynder at rotere hurtigt. Tænk på en skøjteløber, der trækker armene
+            ind til kroppen midt i en piruet, og begynder at dreje hurtigere. Det samme kan ske når en stjernekerne presses
+            sammen og bliver mindre. Hvis rotationen er høj nok, vil en pulsar blive skabt.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="pulsar.jpg"
+          alt="Pulsar"
+        >
+
+        <p>
+          <em>Pulsar (model)</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>PSR J1446-4701</h2>
+
+        <p>
+          PSR J1446-4701 is a pulsar. Pulsars are a special kind of stellar remnant that appear to blink because
+          powerful beams of radiation shine out from their magnetic poles while they rotate very quickly. This pulsar
+          is a so-called Black Widow pulsar because it has a companion star that it is gradually destroying with these
+          intense pulses — rather like the black widow spider, which is known for sometimes eating its mate after mating.
+        </p>
+
+        <p>
+          Consider why the threads in this object have the shape that they do.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk5.jpg"
+          alt="Work 5"
+        >
+
+        <p>
+          <em>Location hint: This is one of the works hanging highest up.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about pulsars</h3>
+
+          <p>
+            Pulsars can form in supernova explosions, when very massive stars reach the end of their lives. In these
+            explosions, the star's core is compressed enormously and can form either a neutron star or a black hole.
+            When something becomes smaller, it can also begin rotating much faster. Think of a figure skater pulling
+            their arms in during a spin and rotating more quickly. The same can happen when a stellar core is compressed.
+            If the rotation is fast enough and the conditions are right, a pulsar can be formed.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="pulsar.jpg"
+          alt="Pulsar"
+        >
+
+        <p>
+          <em>Pulsar (model)</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 6
+       ========================================= */
+
+    6: {
+
+      da: `
+
+        <h2>SANDULEAK -69 202</h2>
+
+        <p>
+          SANDULEAK -69 202 var engang en stjerne. Denne stjerne er særlig, fordi man fik lov til at se den ende sit
+          liv i en supernovaeksplosion. Supernovaen blev observeret i 1987, og det var første gang nogensinde, hvor man
+          havde observeret stjernen både inden og efter. I dag findes stjernen altså ikke – men der hvor den lå, ligger
+          nu supernovaresten som en sky af stjernestøv, samt en neutronstjerne som er resterne af kernen af stjernen.
+        </p>
+
+        <p>
+          Kig på objektet, og hav stjernens historie i mente. Hvad tror du Saraceno har tænkt?
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk6.jpg"
+          alt="Værk 6"
+        >
+
+        <p>
+          <em>Hint til lokation: Findes ca. halvvejs oppe af en trappe.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om supernovaernes rolle</h3>
+
+          <p>
+            Supernovaer er <em>meget</em> nyttige for astronomer. Det er de, fordi at man ofte ved præcis hvor lysstærke
+            de er. Hvis man ved præcis hvor meget de lyser, kan man nemt beregne afstanden til dem. Jo længere væk de er,
+            jo mindre lysstærke ser de ud. Det er enormt brugbart for at beregne afstand, som ellers kan være ret svært.
+            Målingen af denne slags supernovaer, samt deres hastigheder, viser os, at ikke nok med at universet er i
+            udvidelse, så er det en udvidelse der accelererer.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="supernova.png"
+          alt="Supernova"
+        >
+
+        <p>
+          <em>SANDULEAK -69 202 før og under supernovaeksplosionen</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>SANDULEAK -69 202</h2>
+
+        <p>
+          SANDULEAK -69 202 was once a star. What makes this star special is that astronomers were able to watch it end
+          its life in a supernova explosion. The supernova was observed in 1987, and it was the first time astronomers
+          had observed the star both before and after such an explosion. The original star no longer exists. In its place
+          is a supernova remnant — a cloud of stellar material — together with a neutron star formed from the remains of
+          the star's core.
+        </p>
+
+        <p>
+          Look at the object while keeping the star's history in mind. What do you think Saraceno was considering?
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk6.jpg"
+          alt="Work 6"
+        >
+
+        <p>
+          <em>Location hint: It can be found approximately halfway up a staircase.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about the role of supernovae</h3>
+
+          <p>
+            Supernovae are <em>very</em> useful to astronomers. Certain kinds of supernovae have predictable intrinsic
+            brightnesses, which makes it possible to estimate their distance. The farther away they are, the fainter
+            they appear. This is extremely useful because measuring astronomical distances can otherwise be very difficult.
+            Measurements of these supernovae and their motions have helped show that the universe is not only expanding,
+            but that its expansion is accelerating.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="supernova.png"
+          alt="Supernova"
+        >
+
+        <p>
+          <em>SANDULEAK -69 202 before and during the supernova explosion</em>
+        </p>
+
+      `
+
+    },
+
+
+
+    /* =========================================
+       POST 7
+       ========================================= */
+
+    7: {
+
+      da: `
+
+        <h2>CENTRAL SUPERMASSIVE BLACK HOLE OF NGC 4567</h2>
+
+        <p>
+          I midten af de fleste galakser ligger der et supermassivt sort hul, som blandt andet sørger for at holde
+          galaksen sammen. Et sort hul er et objekt, der er så tungt, at selv ikke lys kan undslippe dets tyngdekraft,
+          hvis det kommer for tæt på. Det er derfor man ikke som sådan kan se et sort hul – man kan kun se omridset,
+          nærmest som en skygge eller en silhuet. Dette objekt forestiller det centrale supermassive sorte hul i galaksen
+          NGC 4567, som er en af to galakser der er i sammenstød i det man samlet kalder Sommerfuglegalaksen. Det er lykkedes
+          astronomer at fotografere to sorte huller, heriblandt det supermassive sorte hul i midten af vores egen galakse,
+          Mælkevejen.
+        </p>
+
+        <p>
+          Overvej hvordan Saraceno har valgt at repræsentere det sorte hul.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk7.jpg"
+          alt="Værk 7"
+        >
+
+        <p>
+          <em>Hint til lokation: Find dette værk tæt på elevatoren.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>Mere om sorte huller</h3>
+
+          <p>
+            Sorte huller er nogle af de mest ekstreme objekter, der findes i universet. De skabes som udgangspunkt i
+            supernovaeksplosioner, hvor en stor stjerne ender sit liv. Her presses kernen af stjernen sammen. Hvis den er
+            tung nok, skabes et sort hul. Der er meget vi ikke ved om de sorte huller, da vi aldrig kan få information inde
+            fra hullet af. Det er fordi, at selv ikke lys (som ellers er det hurtigste, der overhovedet findes!) kan undslippe
+            dens tyngdekraft. Kommunikationssignaler, såsom radiobølger er <em>også</em> lys, og kan altså derfor aldrig komme
+            ud af det sorte hul, selv hvis vi sendte en modig astronaut med en radioantenne ind i det.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="black_hole.jpg"
+          alt="Sort hul"
+        >
+
+        <p>
+          <em>Sort hul (model)</em>
+        </p>
+
+      `,
+
+      en: `
+
+        <h2>CENTRAL SUPERMASSIVE BLACK HOLE OF NGC 4567</h2>
+
+        <p>
+          At the centre of most galaxies lies a supermassive black hole. A black hole is an object with such strong gravity
+          that not even light can escape once it passes too close. This is why we cannot see a black hole itself in the usual
+          sense; instead, we infer its presence from its surroundings and can sometimes see a dark silhouette or shadow.
+          This object represents the central supermassive black hole in the galaxy NGC 4567, one of two colliding galaxies
+          that together are known as the Butterfly Galaxies. Astronomers have succeeded in imaging the shadows of two black
+          holes, including the supermassive black hole at the centre of our own galaxy, the Milky Way.
+        </p>
+
+        <p>
+          Consider how Saraceno has chosen to represent the black hole.
+        </p>
+
+        <img
+          class="post-image"
+          src="Værk7.jpg"
+          alt="Work 7"
+        >
+
+        <p>
+          <em>Location hint: Find this work close to the elevator.</em>
+        </p>
+
+        <div class="extra-info">
+
+          <h3>More about black holes</h3>
+
+          <p>
+            Black holes are some of the most extreme objects in the universe. Stellar-mass black holes can form when a massive
+            star reaches the end of its life and its core collapses. If the remaining core is massive enough, a black hole can
+            form. There is still a great deal we do not know about black holes because no information can escape from inside
+            the event horizon. Not even light — the fastest thing there is — can escape once it has crossed that boundary.
+            Communication signals such as radio waves are <em>also</em> forms of light, so they could not be sent back out
+            from inside the black hole, even if we sent a very brave astronaut in with a radio antenna.
+          </p>
+
+        </div>
+
+        <img
+          class="post-image"
+          src="black_hole.jpg"
+          alt="Black hole"
+        >
+
+        <p>
+          <em>Black hole (model)</em>
+        </p>
+
+      `
+
+    }
+
+  };
+
+
+
+  /* =========================================
+     OPEN A POST
+     ========================================= */
+
+  function openPost(postNumber) {
+
+    document.getElementById("startPage").style.display = "none";
+
+    document.getElementById("postPage").style.display = "block";
+
+    document.getElementById("postInformation").innerHTML =
+      posts[postNumber][currentLanguage];
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+
+  /* =========================================
+     RETURN TO FRONT PAGE
+     ========================================= */
+
+  function goBack() {
+
+    document.getElementById("postPage").style.display = "none";
+
+    document.getElementById("startPage").style.display = "block";
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+  /* Initialize the page in Danish */
+  setLanguage("da");
+
+</script>
+
+</body>
+
+</html>
